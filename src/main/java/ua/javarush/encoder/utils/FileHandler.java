@@ -1,13 +1,24 @@
 package ua.javarush.encoder.utils;
 
-import java.io.IOException;
+import java.io.*;
+
 
 public class FileHandler {
     public String readData(String filePath) throws IOException {
-        throw new UnsupportedOperationException();
+        StringBuilder fileContent = new StringBuilder();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
+            while (bufferedReader.ready()) {
+                fileContent.append(bufferedReader.readLine()).append("\n");
+            }
+        }
+        fileContent.setLength(fileContent.length() - 1);
+
+        return fileContent.toString();
     }
 
-    public void writeData(String filePath) throws IOException {
-        throw new UnsupportedOperationException();
+    public void writeData(String filePath, String data) throws IOException {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath))) {
+            bufferedWriter.write(data);
+        }
     }
 }
