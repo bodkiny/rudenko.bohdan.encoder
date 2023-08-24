@@ -10,10 +10,11 @@ import static ua.javarush.encoder.utils.ArgumentsValidator.DECRYPT_COMMAND;
 import static ua.javarush.encoder.utils.ArgumentsValidator.ENCRYPT_COMMAND;
 
 public class EncoderController {
-    public static final int FILE_PATH_POSITION = 1;
-    public static final int COMMAND_POSITION = 0;
-    public static final int KEY_VALUE_POSITION = 2;
-    public static final int BLANK_KEY_VALUE = 0;
+    private static final int FILE_PATH_POSITION = 1;
+    private static final int COMMAND_POSITION = 0;
+    private static final int KEY_VALUE_POSITION = 2;
+    private static final int BLANK_KEY_VALUE = 0;
+
     private final Encoder encoder;
     private final FileHandler fileHandler;
 
