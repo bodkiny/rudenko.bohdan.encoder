@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CaesarCipherEncoderTest {
 
+    public static final int PLUG_OFFSET_VALUE = 0;
+
     @Test
     void testCipherLowerCaseLetters() {
         CaesarCipherEncoder encoder = new CaesarCipherEncoder();
@@ -81,10 +83,16 @@ class CaesarCipherEncoderTest {
 
 
     @Test
-    void testDecipherWithBruteForce() {
-        // TODO test brute force
-//        CaesarCipherEncoder encoder = new CaesarCipherEncoder();
-//        String result = encoder.decipher("JGNNQ", 5, true);
-//        assertEquals("DAKKH", result);
+    void testDecipherSimpleLowerCaseMessageWithBruteForce() {
+        CaesarCipherEncoder encoder = new CaesarCipherEncoder();
+
+        String cipheredMessage = "Ro qn qjm jwhcqrwp lxwormnwcrju cx bjh, qn faxcn rc rw lryqna, cqjc rb, " +
+                "kh bx lqjwprwp cqn xamna xo cqn unccnab xo cqn juyqjknc, cqjc wxc j fxam lxdum kn vjmn xdc.";
+
+        String expectedDecipheredMessage = "If he had anything confidential to say, he wrote it in cipher, that is, " +
+                "by so changing the order of the letters of the alphabet, that not a word could be made out.";
+
+        String result = encoder.decipher(cipheredMessage, PLUG_OFFSET_VALUE, true);
+        assertEquals(expectedDecipheredMessage, result);
     }
 }

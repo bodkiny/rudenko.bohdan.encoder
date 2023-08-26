@@ -37,6 +37,7 @@ class EncoderControllerTest {
     void cleanUp() throws IOException {
         Files.deleteIfExists(Paths.get(ENCRYPTED_FILE_NAME).toAbsolutePath());
         Files.deleteIfExists(Paths.get(DECRYPTED_FILE_NAME).toAbsolutePath());
+        Files.deleteIfExists(Paths.get(DECRYPTED_BRUTE_FORCE_FILE_NAME).toAbsolutePath());
     }
 
     @Test
@@ -68,5 +69,27 @@ class EncoderControllerTest {
         assertTrue(Files.exists(resultPath));
         String decryptedContent = new String(Files.readAllBytes(resultPath));
         assertEquals("hello", decryptedContent);
+    }
+
+    @Test
+    void testRunBruteForceCommand() throws IOException {
+        String absolutePath = Path.of(BRUTE_FORCE_FILE_NAME).toAbsolutePath().toString();
+        String[] args = {"BRUTE_FORCE", absolutePath, "3"};
+        String originalEncryptedContent = "Kyzj zj kyv dvjjrxv kyrk zj ljvu wfi kvjkzex \n" +
+                "VetfuviTfekifccviKvjk tcrjj. Zw SILKV_WFITV dfuv jlttvjjwlccp uvtipgkj kyzj \n" +
+                "dvjjrxv, zk nzcc jyfn, kyrk kyv zdgcvdvekrkzfe fw kyv silkv wfitv uvtipgkzfe srjvu \n" +
+                "fe Tyz-jhlrivu jkrkzjkztj zj nfibzex tfiivtkcp.";
+        Files.write(Paths.get(absolutePath), originalEncryptedContent.getBytes());
+
+        encoderController.run(args);
+
+        Path resultPath = Path.of(DECRYPTED_BRUTE_FORCE_FILE_NAME).toAbsolutePath();
+        assertTrue(Files.exists(resultPath));
+        String decryptedContent = new String(Files.readAllBytes(resultPath));
+        String expectedDecryptedContent = "This is the message that is used for testing \n" +
+                "EncoderControllerTest class. If BRUTE_FORCE mode successfully decrypts this \n" +
+                "message, it will show, that the implementation of the brute force decryption based \n" +
+                "on Chi-squared statistics is working correctly.";
+        assertEquals(expectedDecryptedContent, decryptedContent);
     }
 }
