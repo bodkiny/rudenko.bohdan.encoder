@@ -18,7 +18,7 @@ public final class ArgumentsValidator {
         }
 
         String command = args[0];
-        if (!command.equals(ENCRYPT_COMMAND) && !command.equals(DECRYPT_COMMAND) && !command.equals(BRUTE_FORCE_COMMAND)) {
+        if (!ENCRYPT_COMMAND.equals(command) && !DECRYPT_COMMAND.equals(command) && !BRUTE_FORCE_COMMAND.equals(command)) {
             throw new InvalidArgumentsException("Invalid command.");
         }
 
