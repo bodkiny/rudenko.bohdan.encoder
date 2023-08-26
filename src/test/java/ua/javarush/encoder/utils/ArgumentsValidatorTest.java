@@ -1,8 +1,10 @@
-import org.junit.jupiter.api.Test;
-import ua.javarush.encoder.utils.ArgumentsValidator;
-import ua.javarush.encoder.utils.InvalidArgumentsException;
+package ua.javarush.encoder.utils;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ArgumentsValidatorTest {
 

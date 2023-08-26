@@ -1,5 +1,6 @@
+package ua.javarush.encoder.model.impl;
+
 import org.junit.jupiter.api.Test;
-import ua.javarush.encoder.model.impl.CaesarCipherEncoder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

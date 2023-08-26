@@ -1,5 +1,6 @@
+package ua.javarush.encoder.utils;
+
 import org.junit.jupiter.api.Test;
-import ua.javarush.encoder.utils.FileHandler;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,7 +1,8 @@
+package ua.javarush.encoder.controller;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ua.javarush.encoder.controller.EncoderController;
 import ua.javarush.encoder.model.impl.CaesarCipherEncoder;
 import ua.javarush.encoder.model.interfaces.Encoder;
 import ua.javarush.encoder.utils.FileHandler;
@@ -19,6 +20,8 @@ class EncoderControllerTest {
     private static final String INPUT_ENCRYPTED_FILE_NAME = "src/test/resources/files_for_FileHandler_tests/ControllerTest_encrypted_input.txt";
     private static final String ENCRYPTED_FILE_NAME = "src/test/resources/files_for_FileHandler_tests/ControllerTest_input[ENCRYPTED].txt";
     private static final String DECRYPTED_FILE_NAME = "src/test/resources/files_for_FileHandler_tests/ControllerTest_encrypted_input[DECRYPTED].txt";
+    private static final String BRUTE_FORCE_FILE_NAME = "src/test/resources/files_for_FileHandler_tests/ControllerTest_brute_force_input.txt";
+    private static final String DECRYPTED_BRUTE_FORCE_FILE_NAME = "src/test/resources/files_for_FileHandler_tests/ControllerTest_brute_force_input[DECRYPTED].txt";
     private Encoder encoder;
     private FileHandler fileHandler;
     private EncoderController encoderController;
