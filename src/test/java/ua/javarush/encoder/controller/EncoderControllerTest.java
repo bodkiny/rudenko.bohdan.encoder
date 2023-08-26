@@ -22,6 +22,10 @@ class EncoderControllerTest {
     private static final String DECRYPTED_FILE_NAME = "src/test/resources/files_for_FileHandler_tests/ControllerTest_encrypted_input[DECRYPTED].txt";
     private static final String BRUTE_FORCE_FILE_NAME = "src/test/resources/files_for_FileHandler_tests/ControllerTest_brute_force_input.txt";
     private static final String DECRYPTED_BRUTE_FORCE_FILE_NAME = "src/test/resources/files_for_FileHandler_tests/ControllerTest_brute_force_input[DECRYPTED].txt";
+    private static final String LARGE_FILE_NAME = "src/test/resources/files_for_FileHandler_tests/ControllerTest_large_file.txt";
+    private static final String ENCRYPTED_LARGE_FILE_NAME = "src/test/resources/files_for_FileHandler_tests/ControllerTest_large_file[ENCRYPTED].txt";
+    private static final String DECRYPTED_LARGE_FILE_NAME = "src/test/resources/files_for_FileHandler_tests/ControllerTest_large_file[ENCRYPTED][DECRYPTED].txt";
+
     private Encoder encoder;
     private FileHandler fileHandler;
     private EncoderController encoderController;
@@ -38,6 +42,8 @@ class EncoderControllerTest {
         Files.deleteIfExists(Paths.get(ENCRYPTED_FILE_NAME).toAbsolutePath());
         Files.deleteIfExists(Paths.get(DECRYPTED_FILE_NAME).toAbsolutePath());
         Files.deleteIfExists(Paths.get(DECRYPTED_BRUTE_FORCE_FILE_NAME).toAbsolutePath());
+        Files.deleteIfExists(Paths.get(ENCRYPTED_LARGE_FILE_NAME).toAbsolutePath());
+        Files.deleteIfExists(Paths.get(DECRYPTED_LARGE_FILE_NAME).toAbsolutePath());
     }
 
     @Test
@@ -91,5 +97,21 @@ class EncoderControllerTest {
                 "message, it will show, that the implementation of the brute force decryption based \n" +
                 "on Chi-squared statistics is working correctly.";
         assertEquals(expectedDecryptedContent, decryptedContent);
+    }
+
+    @Test
+    void testLargeFileEncryptionAndDecryption() throws IOException {
+        String absolutePath = Path.of(LARGE_FILE_NAME).toAbsolutePath().toString();
+        String[] args = {"ENCRYPT", absolutePath, "24"};
+        String originalContent = new String(Files.readAllBytes(Path.of(absolutePath)));
+
+        encoderController.run(args);
+        args[0] = "DECRYPT";
+        String absolutePathOfEncryptedFile = Path.of(ENCRYPTED_LARGE_FILE_NAME).toAbsolutePath().toString();
+        args[1] = absolutePathOfEncryptedFile;
+        encoderController.run(args);
+
+        String encryptedAndThenDecryptedContent = new String(Files.readAllBytes(Path.of(DECRYPTED_LARGE_FILE_NAME).toAbsolutePath()));
+        assertEquals(originalContent, encryptedAndThenDecryptedContent);
     }
 }
