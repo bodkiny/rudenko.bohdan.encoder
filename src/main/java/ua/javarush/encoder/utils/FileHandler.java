@@ -1,7 +1,10 @@
 package ua.javarush.encoder.utils;
 
-import java.io.*;
-
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class FileHandler {
     public String readData(String filePath) throws IOException {
