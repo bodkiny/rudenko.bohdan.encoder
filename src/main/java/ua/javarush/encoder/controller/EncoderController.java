@@ -23,7 +23,7 @@ public class EncoderController {
         this.fileHandler = fileHandler;
     }
 
-    public void run(String[] args) {
+    public void run(String[] args) throws IOException {
         ArgumentsValidator.validateArguments(args);
         String command = args[COMMAND_POSITION];
         String filePath = args[FILE_PATH_POSITION];
@@ -36,7 +36,7 @@ public class EncoderController {
             fileHandler.writeData(newFilePath, result);
             System.out.println("Your file was successfully " + (command.equals(ENCRYPT_COMMAND) ? "[ENCRYPTED]" : "[DECRYPTED]"));
         } catch (IOException e) {
-            e.printStackTrace();
+            throw e;
         }
     }
 
