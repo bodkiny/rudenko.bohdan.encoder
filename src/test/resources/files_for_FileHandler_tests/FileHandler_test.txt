@@ -1,0 +1,3 @@
+Some file	content
+for testing
+A		FileHAndler methods.
